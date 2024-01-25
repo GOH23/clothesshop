@@ -1,0 +1,108 @@
+.carda {
+    border: 1px solid rgba(187, 187, 187, 0.747);
+    border-radius: 20px;
+    min-height: 200px;
+    min-width: 303px;
+    max-width: 303px;
+    position: relative;
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+
+.carda img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    top: -70px;
+    left: 35%;
+    border-radius: 40%;
+    border: 1px solid rgba(187, 187, 187, 0.747);
+}
+
+@media (max-width: 600px) {
+    #box {
+        justify-content: center;
+    }
+    #swiper-slide {
+        display: flex;
+        justify-content: center;
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+        
+    }
+    
+    .swiper-slide img {
+        object-fit: cover;
+        display: block;
+        width: 300px;
+        height: 300px;
+    }
+}
+
+.mySwiper {
+ 
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#swiper-slide {
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    width: 400px;
+    height: 400px;
+    
+}
+
+.swiper-slide img {
+    object-fit: cover;
+    display: block;
+    width: 400px;
+    height: 400px;
+}
+
+.content_box {
+    bottom: 0;
+    border-radius: 20px;
+    width: 100%;
+
+    background-color: rgba(187, 187, 187, 0.747);
+    padding: 10px;
+    position: absolute;
+}
+
+.korzinecont {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 50px;
+    font-size: 30px;
+}
+
+.cardbox {
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 400px;
+    overflow: auto;
+    color: white;
+
+    font-weight: bold;
+}
+.cardbox img{
+
+    border-radius: 10px;
+    height: 100px;
+    width: fit-content;
+}
+.cardcard{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.527);
+    display: flex;
+    align-items: center;
+}
