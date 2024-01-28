@@ -2,7 +2,7 @@ import { Typography } from "@mui/material"
 import { motion } from "framer-motion"
 import { Col, Container, Row } from "react-bootstrap"
 export function Collectionspage() {
-    return (<main style={{ minHeight: '100vh' }}>
+    return (<main>
         <Container>
             <Typography variant="h4" sx={{ textAlign: 'center' }}>Наши партнеры</Typography>
             <Row md={1} lg={1}  className="justify-content-center row-eq-height">

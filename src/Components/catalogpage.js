@@ -74,7 +74,7 @@ export function CatalogPage() {
         options: Tovars.map((option) => option.Name),
     };
     if (Loading) return (<LoadingScreen />)
-    return (<Container>
+    return (<main><Container>
 
         <Row>
             <Paper sx={{ display: 'flex', padding: '20px', marginTop: '40px' }}>
@@ -224,5 +224,5 @@ export function CatalogPage() {
                 </Box>
             </Modal.Body>
         </Modal>
-    </Container>)
+    </Container></main>)
 }

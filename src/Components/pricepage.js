@@ -13,7 +13,7 @@ export function Pricelist() {
         }).finally(()=>SetLoading(false))
     },[])
 
-    return (<Container> 
+    return (<main><Container> 
         {Loading ? <LoadingScreen/> : <Table striped bordered hover className="mt-4">
             <thead>
                 <tr>
@@ -32,5 +32,5 @@ export function Pricelist() {
             </tbody>
         </Table>}
         
-    </Container>)
+    </Container></main>)
 }
