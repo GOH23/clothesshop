@@ -8,7 +8,7 @@ export function Pricelist() {
     const [price,SetPrice] = useState([])
     const {SetLoading,Loading} = useContext(LoadingContext)
     useEffect(()=>{
-        axios.get("https://back-3knc.onrender.com/price/table").then((res)=>{
+        axios.get("https://ill-rose-penguin-belt.cyclic.app/price/table").then((res)=>{
             SetPrice(res.data)
         }).finally(()=>SetLoading(false))
     },[])

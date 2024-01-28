@@ -36,7 +36,7 @@ export function CatalogPage() {
         }
     }
     useEffect(() => {
-        axios.get("https://back-3knc.onrender.com/products").then((res) => {
+        axios.get("https://ill-rose-penguin-belt.cyclic.app/products").then((res) => {
             SetOrders(res.data)
             SetTovars(res.data)
         }).finally(() => SetLoading(false))

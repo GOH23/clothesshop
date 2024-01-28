@@ -13,7 +13,7 @@ export function AboutUs() {
     const { Loading, SetLoading } = useContext(LoadingContext)
     const [Tovars, SetTovars] = useState([])
     useEffect(() => {
-        axios.get("https://back-3knc.onrender.com/products").then((res) => { SetTovars(res.data)}).finally(() => { SetLoading(false) })
+        axios.get("https://ill-rose-penguin-belt.cyclic.app/products").then((res) => { SetTovars(res.data)}).finally(() => { SetLoading(false) })
     }, [])
     return (<Container className="mt-5" style={{ minHeight: '100vh' }}>
         <Typography className="text-center" variant="h2">О нас</Typography>
