@@ -115,7 +115,7 @@ export function CatalogPage() {
             {FilteredOrders.map((el, ind) => {
                 return (<Col style={{ margin: '10px', textAlign: 'center', }} key={ind}>
                     <div style={{ position: 'relative'}}>
-                        <motion.img variants={anim} whileHover="animate" src={"https://back-3knc.onrender.com/images/" + el.Image} alt='' style={{ height: '400px', width: 'fit-content', borderRadius: '10px', border: '3px solid black' }} />
+                        <motion.img variants={anim} whileHover="animate" src={"https://ill-rose-penguin-belt.cyclic.app/images/" + el.Image} alt='' style={{ height: '400px', width: 'fit-content', borderRadius: '10px', border: '3px solid black' }} />
                         <motion.div className="content_box" variants={anim} initial="initial" whileHover="animate" viewport={{ once: true }}>
                             <Typography sx={{ fontWeight: 'bold' }}>{el.Name}</Typography>
                             <Typography>{el.Description}</Typography>
@@ -149,7 +149,7 @@ export function CatalogPage() {
                 <div className="cardbox">
                     {FinalOrders.map((el) => {
                         return (<div className="cardcard">
-                            <img src={"https://back-3knc.onrender.com/images/" + el.Image} />
+                            <img src={"https://ill-rose-penguin-belt.cyclic.app/images/" + el.Image} />
                             <Typography>{el.Name}</Typography>
                         </div>)
                     })}

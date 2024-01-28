@@ -43,7 +43,7 @@ export function AboutUs() {
                         <CardMedia
                             component="img"
                             sx={{ objectFit: 'cover', borderRadius: '10px' }}
-                            image={"https://back-3knc.onrender.com/images/" + el.Image}
+                            image={"https://ill-rose-penguin-belt.cyclic.app/images/" + el.Image}
                         />
                         <Box
                             sx={{
