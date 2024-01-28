@@ -64,7 +64,7 @@ export function Collectionspage() {
                 <Col md="6" lg="6" className="mt-2">
                     <motion.div initial={{x: -100,opacity: 0}} whileInView={{x: 0,opacity: 1}} transition={{duration: 1.5,delay: 0.35}} viewport={{once: true}}>
                         <motion.div className="card">
-                            <img src='https://static-basket-01.wbbasket.ru/vol0/i/header/wb-logo_cybermonday_2024.svg' />
+                            <img src='https://avatars.mds.yandex.net/get-altay/240733/2a0000015eb38c9262fb965bec3ab72460c8/XS' />
                             <div className="options">
                                 <Typography sx={{ fontWeight: 'bold' }}>ItalBazar</Typography>
                                 <motion.a whileHover={{textDecoration: 'underline',color: 'blue'}} className="next_pg"  href="https://www.italbazar.ru">перейти</motion.a>
