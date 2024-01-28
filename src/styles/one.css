@@ -8,7 +8,9 @@
     margin-bottom: 80px;
     margin-top: 80px;
 }
-
+main{
+    min-height: 100vh;
+}
 .carda img {
     position: absolute;
     height: 100px;
