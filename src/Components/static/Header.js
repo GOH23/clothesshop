@@ -2,7 +2,7 @@ import React from 'react';
 import {motion} from 'framer-motion';
 import { Container, Nav, NavDropdown,  NavLink,  Navbar } from 'react-bootstrap';
 import { AppBar, Toolbar, useScrollTrigger } from '@mui/material'
-import {GrServices} from 'react-icons/gr';
+
 import { Link } from 'react-router-dom';
 function ElevationScroll(props) {
     const { children, window } = props;
@@ -39,7 +39,7 @@ export function Header() {
                             <Nav >
                                 <NavDropdown title='Наши услуги' style={{fontSize: '20px'}} id="basic-nav-dropdown">
                                     <NavDropdown.Item href="/yslugi" style={{fontSize: '18px'}} >Наши продукты</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2" style={{fontSize: '18px'}} >
+                                    <NavDropdown.Item href="/coll" style={{fontSize: '18px'}} >
                                         Справочник
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/pricelist" style={{fontSize: '18px'}} >Прайс-лист</NavDropdown.Item>
@@ -63,7 +63,7 @@ export function Header() {
                     <div className='text-black'>
                         <motion.h1 className='mb-3' variants={anim} initial="initial" whileInView="animate" custom={1} viewport={{once: true}}>Магазин одежды</motion.h1>
                         <motion.h4 className='mb-3' variants={anim} initial="initial" whileInView="animate" custom={2} viewport={{once: true}}>
-                            Предлагаем обувь или другие виды одежды как для мужчик так и для женщин</motion.h4>
+                            Предлагаем обувь или другие виды одежды как для мужчин так и для женщин</motion.h4>
                         <Link to='/yslugi' className='btn btn-outline-dark btn-lg' href='d' role='button' variants={anim} initial="initial" whileInView="animate" custom={3} viewport={{once: true}}>
                             Заказать нашу продукцию
                         </Link>

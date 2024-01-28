@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, ButtonGroup, Col, Container, Dropdown, Modal, Row, Toast, ToastContainer } from "react-bootstrap";
-import { Tovars } from "./items";
 import { Autocomplete, Box, Input, Paper, Step, StepLabel, Stepper, TextField, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { FcLike } from 'react-icons/fc'
 import { AiFillShopping, AiFillSetting } from 'react-icons/ai'
 import emailjs from "@emailjs/browser";
+import { LoadingContext } from "../loadingContext";
+import axios from 'axios'
+import { LoadingScreen } from "./static/LoadingScreen";
 export function CatalogPage() {
-    const [FilteredOrders, SetOrders] = useState(Tovars)
+    const { SetLoading, Loading } = useContext(LoadingContext)
+    const [FilteredOrders, SetOrders] = useState()
     const [SelectedBrn, SetSelected] = useState('СБРОСИТЬ ФИЛЬТРЫ')
     const [showModal, SetshowModal] = useState(false)
     const [showModal2, SetshowModal2] = useState(false)
     const [FinalOrders, Set] = useState([])
+    const [Tovars,SetTovars] = useState([])
     const [show, setShow] = useState({
         title: '',
         show: false
@@ -31,7 +35,12 @@ export function CatalogPage() {
             opacity: 1
         }
     }
-
+    useEffect(() => {
+        axios.get("https://back-3knc.onrender.com/products").then((res) => {
+            SetOrders(res.data)
+            SetTovars(res.data)
+        }).finally(() => SetLoading(false))
+    }, [])
     const SelectTovar = (el) => {
         setShow({ show: true })
         try {
@@ -52,7 +61,8 @@ export function CatalogPage() {
         }
         SetSelected(selectedfilter)
         SetOrders(Tovars.filter((el) => {
-            return (el.type == selectedfilter);
+            console.log(el.Type)
+            return (el.Type.Name == selectedfilter);
         }))
 
     }
@@ -61,21 +71,23 @@ export function CatalogPage() {
         Set(JSON.parse(localStorage.getItem('cartItems')) || [])
     }
     const flatProps = {
-        options: Tovars.map((option) => option.title),
+        options: Tovars.map((option) => option.Name),
     };
+    if (Loading) return (<LoadingScreen />)
     return (<Container>
+
         <Row>
             <Paper sx={{ display: 'flex', padding: '20px', marginTop: '40px' }}>
                 <Autocomplete
                     disablePortal
-                    onChange={(event,newValue) => {
+                    onChange={(event, newValue) => {
                         if (newValue == null) {
                             SetSelected('СБРОСИТЬ ФИЛЬТРЫ')
                             return (SetOrders(Tovars))
-                        } else{
+                        } else {
                             SetOrders(Tovars.filter((el) => {
                                 SetSelected('СБРОСИТЬ ФИЛЬТРЫ')
-                                return (el.title == newValue);
+                                return (el.Name == newValue);
                             }));
                         }
 
@@ -101,13 +113,16 @@ export function CatalogPage() {
         </Row>
         <Row style={{ marginTop: '100px' }}>
             {FilteredOrders.map((el, ind) => {
-                return (<Col style={{ margin: '10px', textAlign: 'center', position: 'relative' }} key={ind}>
-                    <motion.img variants={anim} whileHover="animate" src={el.image} alt='' style={{ height: '400px', width: 'fit-content', borderRadius: '10px', border: '3px solid black' }} />
-                    <motion.div className="content_box" variants={anim} initial="initial" whileHover="animate" viewport={{ once: true }}>
-                        <Typography sx={{ fontWeight: 'bold' }}>{el.title}</Typography>
-                        <Typography>{el.desc}</Typography>
-                        <Button onClick={() => SelectTovar(el)}>Добавить к заказу</Button>
-                    </motion.div>
+                return (<Col style={{ margin: '10px', textAlign: 'center', }} key={ind}>
+                    <div style={{ position: 'relative'}}>
+                        <motion.img variants={anim} whileHover="animate" src={"https://back-3knc.onrender.com/images/" + el.Image} alt='' style={{ height: '400px', width: 'fit-content', borderRadius: '10px', border: '3px solid black' }} />
+                        <motion.div className="content_box" variants={anim} initial="initial" whileHover="animate" viewport={{ once: true }}>
+                            <Typography sx={{ fontWeight: 'bold' }}>{el.Name}</Typography>
+                            <Typography>{el.Description}</Typography>
+                            <Typography sx={{ fontWeight: "bold" }}>Цена: {el.Price} руб</Typography>
+                            <Button onClick={() => SelectTovar(el)}>Добавить к заказу</Button>
+                        </motion.div>
+                    </div>
                 </Col>)
             })}
         </Row>
@@ -117,7 +132,7 @@ export function CatalogPage() {
         <ToastContainer position="bottom-start" className="p-3" style={{ position: 'fixed' }}>
             <Toast onClose={() => setShow({ show: false })} show={show.show} delay={3000} autohide>
                 <Toast.Header >
-                    
+
                     <img src="https://image.pngaaa.com/838/30838-middle.png" style={{ height: '50px', width: '50px' }} className="rounded me-2" alt="" />
                     <strong className="me-auto">Магазин одежды</strong>
                     <small></small>
@@ -134,8 +149,8 @@ export function CatalogPage() {
                 <div className="cardbox">
                     {FinalOrders.map((el) => {
                         return (<div className="cardcard">
-                            <img src={el.image} />
-                            <Typography>{el.title}</Typography>
+                            <img src={"https://back-3knc.onrender.com/images/" + el.Image} />
+                            <Typography>{el.Name}</Typography>
                         </div>)
                     })}
                 </div>

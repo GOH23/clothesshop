@@ -1,8 +1,20 @@
 import { Container, Table } from "react-bootstrap";
-import { price } from "./products/proces";
+
+import { useContext, useEffect, useState } from "react";
+import axios from 'axios' 
+import { LoadingContext } from "../loadingContext";
+import { LoadingScreen } from "./static/LoadingScreen";
 export function Pricelist() {
-    return (<Container>
-        <Table striped bordered hover className="mt-4">
+    const [price,SetPrice] = useState([])
+    const {SetLoading,Loading} = useContext(LoadingContext)
+    useEffect(()=>{
+        axios.get("https://back-3knc.onrender.com/price/table").then((res)=>{
+            SetPrice(res.data)
+        }).finally(()=>SetLoading(false))
+    },[])
+
+    return (<Container> 
+        {Loading ? <LoadingScreen/> : <Table striped bordered hover className="mt-4">
             <thead>
                 <tr>
                     <th>Название</th>
@@ -12,12 +24,13 @@ export function Pricelist() {
             <tbody>
                 {price.map((el)=>{
                     return(<tr>
-                        <td>{el.title}</td>
-                        <td>{el.price} руб</td>
+                        <td>{el.Name}</td>
+                        <td>{el.Price} руб</td>
                     </tr>)
                 })}
 
             </tbody>
-        </Table>
+        </Table>}
+        
     </Container>)
 }

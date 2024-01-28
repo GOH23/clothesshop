@@ -1,18 +1,26 @@
 import { Box, CardMedia, Typography } from "@mui/material";
 import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Tovars } from "../Components/items";
 import { EffectCoverflow, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { LoadingContext } from "../loadingContext";
+import { LoadingScreen } from "./static/LoadingScreen";
 export function AboutUs() {
+    const { Loading, SetLoading } = useContext(LoadingContext)
+    const [Tovars, SetTovars] = useState([])
+    useEffect(() => {
+        axios.get("https://back-3knc.onrender.com/products").then((res) => { SetTovars(res.data)}).finally(() => { SetLoading(false) })
+    }, [])
     return (<Container className="mt-5" style={{ minHeight: '100vh' }}>
         <Typography className="text-center" variant="h2">О нас</Typography>
         <Typography className="text-center" variant="h5">
             Добро пожаловать в наш уникальный магазин модной одежды, где стиль встречает комфорт, а качество становится стандартом. Мы создали это пространство для тех, кто ценит индивидуальность, высокое качество и последние тренды моды.
         </Typography>
-        <Swiper
+        {Loading ? <LoadingScreen /> : <Swiper
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
@@ -35,7 +43,7 @@ export function AboutUs() {
                         <CardMedia
                             component="img"
                             sx={{ objectFit: 'cover', borderRadius: '10px' }}
-                            image={el.image}
+                            image={"https://back-3knc.onrender.com/images/" + el.Image}
                         />
                         <Box
                             sx={{
@@ -48,15 +56,16 @@ export function AboutUs() {
                                 padding: '0px',
                             }}
                         >
-                            <Typography sx={{ textAlign: 'center', fontWeight: 'bold', margin: '10px' }} variant="body1">{el.title}</Typography>
+                            <Typography sx={{ textAlign: 'center', fontWeight: 'bold', margin: '10px' }} variant="body1">{el.Name}</Typography>
                         </Box>
                     </Box>
                 </SwiperSlide>)
             })}
-        </Swiper>
+        </Swiper>}
+
         <Typography className="text-center" variant="h2">Наша Миссия</Typography>
         <Typography className="text-center" variant="h5">
-        В основе нашей миссии лежит стремление подчеркнуть вашу уникальность через стиль и комфорт. Мы убеждены, что одежда не только отражает ваш внешний вид, но и подчеркивает вашу личность. Мы предлагаем коллекции, которые вдохновляют к выражению себя, создавая стильные и неповторимые образы.
+            В основе нашей миссии лежит стремление подчеркнуть вашу уникальность через стиль и комфорт. Мы убеждены, что одежда не только отражает ваш внешний вид, но и подчеркивает вашу личность. Мы предлагаем коллекции, которые вдохновляют к выражению себя, создавая стильные и неповторимые образы.
         </Typography>
     </Container>)
 }
