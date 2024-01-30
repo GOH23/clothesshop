@@ -31,7 +31,7 @@ export function CatalogPage() {
     })
     
     useEffect(() => {
-        Promise.all([axios.get("https://ill-rose-penguin-belt.cyclic.app/products"),axios.get("http://localhost:4444/scales")])
+        Promise.all([axios.get("https://ill-rose-penguin-belt.cyclic.app/products"),axios.get("https://ill-rose-penguin-belt.cyclic.app/scales")])
         .then((allResults) => {
             SetOrders(allResults[0].data)
             SetTovars(allResults[0].data)
