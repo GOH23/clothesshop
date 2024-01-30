@@ -33,7 +33,7 @@ export function Header() {
             <AppBar sx={{ minHeight: '64px', backgroundColor: 'white' }}>
                 <Navbar bg='light' variant='light' expand="md" style={{ minHeight: '64px' }}>
                     <Container >
-                        <Link to='/' className='navbar-brand' style={{fontSize: '25px'}}><img height='50' width='cover' src='https://image.pngaaa.com/838/30838-middle.png' alt='Не удалось найти картинку'/>Магазин одежды</Link>
+                        <Link to='/' className='navbar-brand' style={{fontSize: '25px'}}><img height='50' width='cover' src='https://play-lh.googleusercontent.com/CyVShdZqZyjUJ8CitRgR7gjcKbZ5ES9VrzaTzr8GYOWMKnCkSJTNwJ3TQJa2vC1ZEejp' alt='Не удалось найти картинку'/>Магазин одежды</Link>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
                             <Nav >

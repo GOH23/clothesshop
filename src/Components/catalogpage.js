@@ -8,6 +8,7 @@ import emailjs from "@emailjs/browser";
 import { LoadingContext } from "../loadingContext";
 import axios from 'axios'
 import { LoadingScreen } from "./static/LoadingScreen";
+import Catalog_Card from "./cards/_card";
 export function CatalogPage() {
     const { SetLoading, Loading } = useContext(LoadingContext)
     const [FilteredOrders, SetOrders] = useState()
@@ -15,7 +16,8 @@ export function CatalogPage() {
     const [showModal, SetshowModal] = useState(false)
     const [showModal2, SetshowModal2] = useState(false)
     const [FinalOrders, Set] = useState([])
-    const [Tovars,SetTovars] = useState([])
+    const [Tovars, SetTovars] = useState([])
+    const [Scales,SetScales] = useState([])
     const [show, setShow] = useState({
         title: '',
         show: false
@@ -27,19 +29,15 @@ export function CatalogPage() {
         orders: '',
         activeStep: 0
     })
-    const anim = {
-        initial: {
-            opacity: 0
-        },
-        animate: {
-            opacity: 1
-        }
-    }
+    
     useEffect(() => {
-        axios.get("https://ill-rose-penguin-belt.cyclic.app/products").then((res) => {
-            SetOrders(res.data)
-            SetTovars(res.data)
-        }).finally(() => SetLoading(false))
+        Promise.all([axios.get("https://ill-rose-penguin-belt.cyclic.app/products"),axios.get("http://localhost:4444/scales")])
+        .then((allResults) => {
+            SetOrders(allResults[0].data)
+            SetTovars(allResults[0].data)
+            SetScales(allResults[1].data)
+            SetLoading(false)
+        })
     }, [])
     const SelectTovar = (el) => {
         setShow({ show: true })
@@ -55,13 +53,12 @@ export function CatalogPage() {
         }
     }
     const FilterOrders = (selectedfilter) => {
-        if (selectedfilter == 'СБРОСИТЬ ФИЛЬТРЫ') {
+        if (selectedfilter == 'Сбросить фильтры') {
             SetSelected(selectedfilter)
             return (SetOrders(Tovars))
         }
         SetSelected(selectedfilter)
         SetOrders(Tovars.filter((el) => {
-            console.log(el.Type)
             return (el.Type.Name == selectedfilter);
         }))
 
@@ -82,11 +79,11 @@ export function CatalogPage() {
                     disablePortal
                     onChange={(event, newValue) => {
                         if (newValue == null) {
-                            SetSelected('СБРОСИТЬ ФИЛЬТРЫ')
+                            SetSelected('Сбросить фильтры')
                             return (SetOrders(Tovars))
                         } else {
                             SetOrders(Tovars.filter((el) => {
-                                SetSelected('СБРОСИТЬ ФИЛЬТРЫ')
+                                SetSelected('Сбросить фильтры')
                                 return (el.Name == newValue);
                             }));
                         }
@@ -97,32 +94,25 @@ export function CatalogPage() {
                     {...flatProps}
                     renderInput={(params) => <TextField {...params} label="Поиск" />}
                 />
-                <Dropdown>
+                <Dropdown className="dropdown_search">
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         Фильтры
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => { FilterOrders('ДЛЯ МУЖЧИНЫ И ЖЕНЩИНЫ') }}>ДЛЯ МУЖЧИНЫ И ЖЕНЩИНЫ {SelectedBrn == 'ДЛЯ МУЖЧИНЫ И ЖЕНЩИНЫ' && <FcLike />}</Dropdown.Item>
-                        <Dropdown.Item onClick={() => { FilterOrders('ДЛЯ ЖЕНЩИНЫ') }}>ДЛЯ ЖЕНЩИНЫ {SelectedBrn == 'ДЛЯ ЖЕНЩИНЫ' && <FcLike />}</Dropdown.Item>
-                        <Dropdown.Item onClick={() => { FilterOrders('ДЛЯ ДЕТЕЙ') }}>ДЛЯ ДЕТЕЙ {SelectedBrn == 'ДЛЯ ДЕТЕЙ' && <FcLike />}</Dropdown.Item>
-
-                        <Dropdown.Item onClick={() => { FilterOrders('СБРОСИТЬ ФИЛЬТРЫ') }}>СБРОСИТЬ ФИЛЬТРЫ {SelectedBrn == 'СБРОСИТЬ ФИЛЬТРЫ' && <FcLike />}</Dropdown.Item>
+                        <Dropdown.Item onClick={() => { FilterOrders('одежда для мужчин') }}>одежда для мужчин {SelectedBrn == 'одежда для мужчин' && <FcLike />}</Dropdown.Item>
+                        <Dropdown.Item onClick={() => { FilterOrders('одежда для женщин') }}>одежда для женщин {SelectedBrn == 'одежда для женщин' && <FcLike />}</Dropdown.Item> 
+                        <Dropdown.Item onClick={() => { FilterOrders('Сбросить фильтры') }}>Сбросить фильтры {SelectedBrn == 'Сбросить фильтры' && <FcLike />}</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+
+
+
             </Paper>
         </Row>
         <Row style={{ marginTop: '100px' }}>
             {FilteredOrders.map((el, ind) => {
                 return (<Col style={{ margin: '10px', textAlign: 'center', }} key={ind}>
-                    <div style={{ position: 'relative'}}>
-                        <motion.img variants={anim} whileHover="animate" src={"https://ill-rose-penguin-belt.cyclic.app/images/" + el.Image} alt='' style={{ height: '400px', width: 'fit-content', borderRadius: '10px', border: '3px solid black' }} />
-                        <motion.div className="content_box" variants={anim} initial="initial" whileHover="animate" viewport={{ once: true }}>
-                            <Typography sx={{ fontWeight: 'bold' }}>{el.Name}</Typography>
-                            <Typography>{el.Description}</Typography>
-                            <Typography sx={{ fontWeight: "bold" }}>Цена: {el.Price} руб</Typography>
-                            <Button onClick={() => SelectTovar(el)}>Добавить к заказу</Button>
-                        </motion.div>
-                    </div>
+                   <Catalog_Card el={el} SelectTovar={SelectTovar} Scales={Scales}/>
                 </Col>)
             })}
         </Row>

@@ -3,6 +3,11 @@
     border-radius: 20px;
     min-height: 200px;
     min-width: 303px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+
+    justify-content: center;
     max-width: 303px;
     position: relative;
     margin-bottom: 80px;
@@ -21,7 +26,12 @@ main{
     border-radius: 40%;
     border: 1px solid rgba(187, 187, 187, 0.747);
 }
-
+.dropdown_search {
+    margin-top: 2px;
+}
+.dropdown_search button{
+    width: 100%;
+}
 @media (max-width: 600px) {
     #box {
         justify-content: center;
@@ -102,7 +112,14 @@ main{
     width: 400px;
     height: 400px;
 }
-
+.clothes_size{
+    position: absolute;
+    top: 0;
+    margin: 5px;
+    font-weight: bold;
+    color: #48ace1;
+    font-size: 40px;
+}
 .content_box {
     bottom: 0;
     border-radius: 20px;
@@ -112,7 +129,12 @@ main{
     padding: 10px;
     position: absolute;
 }
-
+.dd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
 .korzinecont {
     position: fixed;
     bottom: 0;

@@ -31,7 +31,7 @@ export function MainPage() {
       transition: { delay: custom * 0.2, duration: 1.5 }
     })
   }
-  return (<Container>
+  return (<main><Container>
     <Divider sx={{ borderBottomWidth: '10px', marginTop: '10px', borderRadius: '10px' }} />
     <motion.h2 variants={anim} initial='initial' animate='animate' custom={4} viewport={{ once: true }} style={{ textAlign: 'center' }}>О нас</motion.h2>
     <Box sx={{ display: 'flex', justifyContent: 'center', fontSize: '20px', flexWrap: 'wrap', flexDirection: 'row' }}>
@@ -59,24 +59,24 @@ export function MainPage() {
     </Box>
     <Box id='box' sx={{ display: 'flex', justifyContent: 'space-between', fontSize: '20px', flexWrap: 'wrap', flexDirection: 'row', textAlign: 'center' }}>
       <motion.div className="carda money" variants={anim} initial='initial' animate='animate' custom={5} viewport={{ once: true }} >
-        <img src="https://sun6-20.userapi.com/s/v1/ig2/L-RmjNfkY-EEryBbXqlY-oDpCkmZ80A_jmmo44e20otMA7UZUfywh3fBLXR47p9dSyFMQO1gxbYIdFKie0xNepWv.jpg?size=892x900&quality=96&crop=2,0,892,900&ava=1" />
+        <img  src="https://play-lh.googleusercontent.com/CyVShdZqZyjUJ8CitRgR7gjcKbZ5ES9VrzaTzr8GYOWMKnCkSJTNwJ3TQJa2vC1ZEejp"/>
         <Typography sx={{ fontSize: '28px', marginTop: '17px' }}>Малая стоимость</Typography>
         <Typography sx={{ fontSize: '20px' }}>Наши продукты имеют самую низкую стоимость в городе</Typography>
       </motion.div>
       <motion.div className="carda money" variants={anim} initial='initial' animate='animate' custom={5} viewport={{ once: true }} >
-        <img src="https://w7.pngwing.com/pngs/79/1020/png-transparent-motor-vehicle-speedometers-royal-bikes-design-emblem-logo-dribbble.png" />
+        <img src="https://play-lh.googleusercontent.com/CyVShdZqZyjUJ8CitRgR7gjcKbZ5ES9VrzaTzr8GYOWMKnCkSJTNwJ3TQJa2vC1ZEejp"/>
         <Typography sx={{ fontSize: '28px', marginTop: '17px' }}>Качество на Первом Месте</Typography>
-        <Typography sx={{ fontSize: '20px' }}>Все наши товары проходят строгий отбор, чтобы гарантировать высший стандарт качества. Мы сотрудничаем с лучшими производителями, чтобы предложить продукцию, отличающуюся долговечностью и стильным дизайном.</Typography>
+        <Typography sx={{ fontSize: '20px' }}>Все наши товары проходят строгий отбор, чтобы гарантировать высший стандарт качества.</Typography>
       </motion.div>
       <motion.div className="carda money" variants={anim} initial='initial' animate='animate' custom={5} viewport={{ once: true }} >
-        <img src="https://gazon-msk.ru/wp-content/uploads/2021/06/63bd3bdd-6959-4d52-a7b7-bcea8c480c53-167981.png" />
+        <img  src="https://play-lh.googleusercontent.com/CyVShdZqZyjUJ8CitRgR7gjcKbZ5ES9VrzaTzr8GYOWMKnCkSJTNwJ3TQJa2vC1ZEejp"/>
         <Typography sx={{ fontSize: '28px', marginTop: '17px' }}>Тренды и Инновации</Typography>
         <Typography sx={{ fontSize: '20px' }}>Мы всегда в курсе последних модных тенденций, предлагая самые актуальные коллекции.</Typography>
       </motion.div>
       <motion.div className="carda money" variants={anim} initial='initial' animate='animate' custom={5} viewport={{ once: true }} >
-        <img src="https://w7.pngwing.com/pngs/79/1020/png-transparent-motor-vehicle-speedometers-royal-bikes-design-emblem-logo-dribbble.png" />
+        <img  src="https://play-lh.googleusercontent.com/CyVShdZqZyjUJ8CitRgR7gjcKbZ5ES9VrzaTzr8GYOWMKnCkSJTNwJ3TQJa2vC1ZEejp"/>
         <Typography sx={{ fontSize: '28px', marginTop: '17px' }}>Персональный Подход</Typography>
-        <Typography sx={{ fontSize: '20px' }}>Мы ценим каждого клиента и стремимся предоставить индивидуальный сервис. Наши сотрудники готовы помочь подобрать идеальные наряды, соответствующие вашему стилю и предпочтениям.</Typography>
+        <Typography sx={{ fontSize: '20px' }}>Мы ценим каждого клиента и стремимся предоставить индивидуальный сервис.</Typography>
       </motion.div>
     </Box>
 
@@ -100,5 +100,5 @@ export function MainPage() {
         <Typography sx={{ fontSize: '20px' }}>igor1011@mail.ru</Typography>
       </motion.div>
     </Box>
-  </Container>)
+  </Container></main>)
 }
